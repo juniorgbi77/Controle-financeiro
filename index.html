@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Controle Financeiro</title>
+    <style>
+        .progress {
+            width: 150px;
+            height: 150px;
+            background: none;
+            position: relative;
+        }
+
+        .progress::after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 6px solid #eee;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .progress>span {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+        }
+
+        .progress .progress-left {
+            left: 0;
+        }
+
+        .progress .progress-bar {
+            width: 100%;
+            height: 100%;
+            background: none;
+            border-width: 6px;
+            border-style: solid;
+            position: absolute;
+            top: 0;
+        }
+
+        .progress .progress-left .progress-bar {
+            left: 100%;
+            border-top-right-radius: 80px;
+            border-bottom-right-radius: 80px;
+            border-left: 0;
+            -webkit-transform-origin: center left;
+            transform-origin: center left;
+        }
+
+        .progress .progress-right {
+            right: 0;
+        }
+
+        .progress .progress-right .progress-bar {
+            left: -100%;
+            border-top-left-radius: 80px;
+            border-bottom-left-radius: 80px;
+            border-right: 0;
+            -webkit-transform-origin: center right;
+            transform-origin: center right;
+        }
+
+        .progress .progress-value {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        body {
+            background-color: #f3f3f3;
+        }
+
+        .rounded-lg {
+            border-radius: 1rem;
+        }
+
+        div.h4 {
+            line-height: 1rem;
+        }
+
+        .red {
+            border-color: red;
+        }
+
+        .green {
+            border-color: green;
+        }
+
+        .blue {
+            border-color: rgb(0, 0, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row mt-3">
+            <div class="col-12  text-center">
+                <h2 id="monthText">Controle Financeiro</h2>
+            </div>
+        </div>
+        <ul class="nav nav-tabs nav-pills text-center border-0 rounded-nav justify-content-center " id="myTab"
+            role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#mes" type="button"
+                    role="tab" aria-controls="home" aria-selected="true">Mensal</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#semanal" type="button"
+                    role="tab" aria-controls="profile" aria-selected="false">Semanal</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#diario" type="button"
+                    role="tab" aria-controls="contact" aria-selected="false">Diario</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active row" id="mes" role="tabpanel" aria-labelledby="home-tab">
+                <div class="col-12 mb-4 mt-2">
+                    <div class="rounded-lg p-3 shadow progress-out " style="background-color: #f28500 ;"
+                        data-value='itau_mes'>
+                        <h1 class="h2 font-weight-bold text-center mb-1">Itaú</h1>
+                        <h2 class="h6 font-weight-bold text-center mb-3">Janeiro</h2>
+                        <div class="progress mx-auto">
+                            <span class="progress-left">
+                                <span class="progress-bar" id="progress-bar-1"></span>
+                            </span>
+                            <span class="progress-right">
+                                <span class="progress-bar" id="progress-bar-2"></span>
+                            </span>
+                            <div
+                                class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                <div class="h2 font-weight-bold value"></div>
+                            </div>
+                        </div>
+                        <div class="row text-center mt-4">
+                            <div class="col-6 border-right">
+                                <div class="h4 font-weight-bold mb-0 actual"></div><span
+                                    class="small text-gray">Gasto</span>
+                            </div>
+                            <div class="col-6">
+                                <div class="h4 font-weight-bold mb-0 max"></div><span
+                                    class="small text-gray">Disponivel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-4 mt-2">
+                    <div class="rounded-lg p-3 shadow progress-out" style="background-color: #ff2800 ;"
+                        data-value='ifood_mes'>
+                        <h1 class="h2 font-weight-bold text-center mb-1">Ifood</h1>
+                        <h2 class="h6 font-weight-bold text-center mb-3">Janeiro</h2>
+                        <div class="progress mx-auto" data-value='90'>
+                            <span class="progress-left">
+                                <span class="progress-bar" id="progress-bar-1"></span>
+                            </span>
+                            <span class="progress-right">
+                                <span class="progress-bar" id="progress-bar-2"></span>
+                            </span>
+                            <div
+                                class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                <div class="h2 font-weight-bold value"></div>
+                            </div>
+                        </div>
+                        <div class="row text-center mt-4">
+                            <div class="col-6 border-right">
+                                <div class="h4 font-weight-bold mb-0 actual"></div><span
+                                    class="small text-gray">Gasto</span>
+                            </div>
+                            <div class="col-6">
+                                <div class="h4 font-weight-bold mb-0 max"></div><span
+                                    class="small text-gray">Disponivel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="semanal" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="col-12 mb-4 mt-2">
+                    <div class="bg-white rounded-lg p-5 shadow">
+                        <h2 class="h6 font-weight-bold text-center mb-4">Semana 1 | 29/01 a 02/02</h2>
+                        <div class="progress mx-auto" data-value='90'>
+                            <span class="progress-left">
+                                <span class="progress-bar" id="progress-bar-1"></span>
+                            </span>
+                            <span class="progress-right">
+                                <span class="progress-bar" id="progress-bar-2"></span>
+                            </span>
+                            <div
+                                class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                <div class="h2 font-weight-bold value"></div>
+                            </div>
+                        </div>
+                        <div class="row text-center mt-4">
+                            <div class="col-6 border-right">
+                                <div class="h4 font-weight-bold mb-0">R$ 50,00</div><span
+                                    class="small text-gray">Gasto</span>
+                            </div>
+                            <div class="col-6">
+                                <div class="h4 font-weight-bold mb-0">R$ 25,00</div><span
+                                    class="small text-gray">Disponivel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="diario" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="col-12 mb-4 mt-2">
+                    <div class="bg-white rounded-lg p-5 shadow">
+                        <h2 class="h6 font-weight-bold text-center mb-4">Dia 29/01</h2>
+                        <div id="progress-dia" class="progress mx-auto" data-value='90'>
+                            <span class="progress-left">
+                                <span class="progress-bar" id="progress-bar-1"></span>
+                            </span>
+                            <span class="progress-right">
+                                <span class="progress-bar" id="progress-bar-2"></span>
+                            </span>
+                            <div
+                                class="progress-value w-100 h-100 rounded-circle d-flex align-items-center justify-content-center">
+                                <div class="h2 font-weight-bold value"></div>
+                            </div>
+                        </div>
+                        <div class="row text-center mt-4">
+                            <div class="col-6 border-right">
+                                <div class="h4 font-weight-bold mb-0">R$ 50,00</div><span
+                                    class="small text-gray">Gasto</span>
+                            </div>
+                            <div class="col-6">
+                                <div class="h4 font-weight-bold mb-0">R$ 25,00</div><span
+                                    class="small text-gray">Disponivel</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script>
+        var dadosFinanceiros = {
+            "itau": { "valor": 2500.00 }
+            ,
+            "ifood": { "valor": 1266.92 },
+            "itau_mes": {
+                "valor_atual": 1600.00,
+            },
+            "ifood_mes": {
+                "valor_atual": 0.0,
+            },
+            "itau_semana": {
+                "valor_atual": 300.20,
+            },
+            "ifood_semana": {
+                "valor_atual": 0.0,
+            },
+            "itau_dia": {
+                "valor_atual": 0.0,
+            },
+            "ifood_dia": {
+                "valor_atual": 0.0,
+            }
+        }
+
+        function salvarNoLocalStorage(objeto) {
+            var jsonString = JSON.stringify(objeto);
+
+            localStorage.setItem('dadosFinanceiros', jsonString);
+        }
+
+        function recuperarDoLocalStorage() {
+            var jsonString = localStorage.getItem('dadosFinanceiros');
+
+            if (jsonString) {
+                var objeto = JSON.parse(jsonString);
+                return objeto;
+            } else {
+                salvarNoLocalStorage(dadosFinanceiros);
+                return recuperarDoLocalStorage();
+            }
+        }
+
+        const dadosRecuperados = recuperarDoLocalStorage();
+
+        $(function () {
+            $(".progress-out").each(function () {
+                var item = $(this).attr('data-value');
+                    
+
+                console.log(dadosRecuperados['itau'])
+
+                max = dadosRecuperados[item.split('_')[0]].valor;
+                actual = dadosRecuperados[item].valor_atual
+
+                value = ((actual / max) * 100).toFixed(2)
+
+                var valueText = $(this).find('.value').text(value + "%");
+                var valueText = $(this).find('.max').text("R$ " + (max - actual).toFixed(2));
+                var valueText = $(this).find('.actual').text("R$ " + actual.toFixed(2));
+
+                changeBarColor(value, this)
+                fillCircle(value, this)
+            })
+        });
+
+        function fillCircle(value, el) {
+            var left = $(el).find('.progress-left .progress-bar');
+            var right = $(el).find('.progress-right .progress-bar');
+
+            if (value >= 0 && value <= 100) {
+                if (value <= 50) {
+                    right.css('transform', 'rotate(' + percentageToDegrees(value) + 'deg)')
+                } else {
+                    right.css('transform', 'rotate(180deg)')
+                    left.css('transform', 'rotate(' + percentageToDegrees(value - 50) + 'deg)')
+                }
+            } else {
+                right.css('transform', 'rotate(180deg)')
+                left.css('transform', 'rotate(180deg)')
+            }
+        }
+
+        function percentageToDegrees(percentage) {
+            return percentage / 100 * 360
+        }
+
+        function changeBarColor(value, el) {
+            if (value <= 100) {
+                $(el).find('.progress-left .progress-bar').addClass('blue');
+                $(el).find('.progress-right .progress-bar').addClass('blue');
+
+
+            } else {
+                $(el).find('.progress-left .progress-bar').addClass('red');
+                $(el).find('.progress-right .progress-bar').addClass('red');
+            }
+        }
+
+
+    </script>
+
+</body>
+
+</html>
